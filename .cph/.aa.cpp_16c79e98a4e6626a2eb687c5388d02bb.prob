@@ -1,0 +1,1 @@
+{"name":"Local: aa","url":"c:\\projects\\more-javascript-practice\\aa.cpp","tests":[{"id":1726350397225,"input":"1\n3 6\n3 2 4\n","output":"Indices: 1, 2\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\projects\\more-javascript-practice\\aa.cpp","group":"local","local":true}
