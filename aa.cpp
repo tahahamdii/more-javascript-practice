@@ -54,18 +54,7 @@ void solve(){
 
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-        int n = nums.size();
-        // Brute-force solution: Try every pair of indices
-        fr(i, n - 1) {  // Use your custom loop macro fr(i, n) to iterate
-            rep(j, i + 1, n - 1) {  // rep(i, start, end) macro for the second loop
-                if (nums[i] + nums[j] == target) {
-                    return {i, j}; // Return the indices as the result
-                }
-            }
-        }
-        return {}; // No solution found, return an empty vector
-    }
+    
 };
 
 int32_t main() {
@@ -82,13 +71,7 @@ int32_t main() {
         vi nums(n);                  // Use vi (vector<long long>) for the input array
         cin >> nums;                 // Input the elements of the array
         
-        vector<int> result = solution.twoSum(nums, target);  // Call twoSum and get the result
-
-        if (!result.empty()) {       // Check if a solution is found
-            cout << "Indices: " << result[0] << ", " << result[1] << '\n';  // Output the indices
-        } else {
-            cout << "No solution found.\n";  // If no solution is found
-        }
+      
     }
 
     return 0;                         // Return 0 to indicate successful execution
