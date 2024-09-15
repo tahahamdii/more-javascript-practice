@@ -7,6 +7,7 @@
 #include <set>
 #include <map>
 #include <cstdint> 
+#include <algorithm>
 #include <string>
 #include <utility>
 #define int long long
@@ -44,37 +45,43 @@ template<typename typC> ostream &operator<<(ostream &cout,const vector<typC> &a)
 
 
 void solve(){
-    int n=1,m=0;
-    string s;
+    int n;
+    
     cin>>n;
-    vi v(n);
-    cin>>v;
     
-}
 
-class Solution {
-public:
-    
-};
+    vector<pair<int,int>> uniforms(n);
 
-int32_t main() {
-    ios_base::sync_with_stdio(false); // For faster I/O
-    cin.tie(NULL);                    // Unlink cin and cout for faster input
-
-    Solution solution;               // Create an instance of the Solution class
-    int T = 1;                       // Number of test cases
-    cin >> T;                        // Input the number of test cases
-
-    while (T--) {                    // Loop through all test cases
-        int n, target;               // Variables for the number of elements and target sum
-        cin >> n >> target;          // Input n and target
-        vi nums(n);                  // Use vi (vector<long long>) for the input array
-        cin >> nums;                 // Input the elements of the array
-        
-      
+    for( int i = 0; i < n; i++){
+        cin>>uniforms[i].first >> uniforms[i].second;
     }
 
-    return 0;                         // Return 0 to indicate successful execution
+    int count = 0; 
+
+    for (int i = 0; i < n ; i++) {
+        for (int j = 0 ; j < n ; j ++){
+            if (i != j && uniforms[i].first == uniforms[j].second){
+                count++;
+            }
+        }
+    }
+
+    cout << count << endl;
+}
+
+int32_t main()
+{
+ 
+ ios_base::sync_with_stdio(false);
+ cin.tie(NULL);
+
+    int T = 1;
+    //cin >> T;
+    while (T--)
+    {
+        solve();
+    }
+    return 0;
 }
 
     
