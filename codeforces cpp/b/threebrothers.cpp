@@ -45,12 +45,32 @@ template<typename typC> ostream &operator<<(ostream &cout,const vector<typC> &a)
 
 
 void solve() {
-    int total = 6;
-    int a, b,c;
-    cin >> a >> b;
-    int sum = a + b; 
-    c = total - sum ;
-    cout << c << endl;  
+    int t ; 
+    cin >> t ; 
+    while (t--)
+    {
+        int n ; 
+        cin >> n ; 
+        vector<int> a(n);
+
+        for(int i= 0 ; i < n ; ++i ) {
+            cin >> a[i];
+        }
+
+        int result = 0 ;
+        for (int i = 0 ; i < n; ++i){
+            if(i % 2 == 0){
+                result += a[i];
+            }
+            else{
+                result -= a[i];
+            }
+        }
+
+        cout << result << endl;
+        /* code */
+    }
+    
 
     
 }
@@ -62,12 +82,11 @@ int32_t main()
  ios_base::sync_with_stdio(false);
  cin.tie(NULL);
 
-    int T = 1;
     
     
         solve();
 
-    
+        return 0;
 }
 
     
