@@ -1,66 +1,49 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <climits>
-
+#include <bits/stdc++.h>
 using namespace std;
 
-void solve() {
-    int t;
-    cin >> t;
-
-    while (t--) {
-        int n, d, k;
-        cin >> n >> d >> k;
-
-        vector<int> changes(n + 2, 0);  // +2 to handle edge cases for ending jobs
-
-        for (int i = 0; i < k; i++) {
-            int li, ri;
-            cin >> li >> ri;
-            changes[li]++;
-            if (ri + 1 <= n) {
-                changes[ri + 1]--;
-            }
-        }
-
-        vector<int> activeJobs(n + 1, 0);
-        int currentJobs = 0;
-
-        // Calculate the number of active jobs for each day using prefix sum
-        for (int i = 1; i <= n; i++) {
-            currentJobs += changes[i];
-            activeJobs[i] = currentJobs;
-        }
-
-        // Find the maximum and minimum overlaps
-        int maxOverlap = 0, minOverlap = INT_MAX;
-        int maxStartDay = 1, minStartDay = 1;
-        int currentOverlap = 0;
-
-        // Sliding window to determine max and min overlaps
-        for (int i = 1; i <= n - d + 1; i++) {
-            currentOverlap = 0;
-            for (int j = 0; j < d; j++) {
-                currentOverlap += activeJobs[i + j];
-            }
-            if (currentOverlap > maxOverlap) {
-                maxOverlap = currentOverlap;
-                maxStartDay = i;
-            }
-            if (currentOverlap < minOverlap) {
-                minOverlap = currentOverlap;
-                minStartDay = i;
-            }
-        }
-
-        cout << maxStartDay << " " << minStartDay << endl;
-    }
-}
-
-int main() {
+// Fast IO
+inline void fast_io() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    solve();
-    return 0;
+}
+
+int main(){
+    fast_io();
+    int t;
+    cin >> t;
+    while(t--){
+        int n, d, k;
+        cin >> n >> d >> k;
+        vector<int> l_sorted(k);
+        vector<int> r_sorted(k);
+        for(int i=0; i<k; ++i){
+            cin >> l_sorted[i] >> r_sorted[i];
+        }
+        sort(l_sorted.begin(), l_sorted.end());
+        sort(r_sorted.begin(), r_sorted.end());
+        
+        int count_l = 0, count_r = 0;
+        int max_overlap = -1, min_overlap = INT32_MAX;
+        int s_b = 1, s_m = 1;
+        
+        for(int s=1; s <= n - d +1; ++s){
+            while(count_l < k && l_sorted[count_l] <= s + d -1){
+                count_l++;
+            }
+            while(count_r < k && r_sorted[count_r] < s){
+                count_r++;
+            }
+            int current_overlap = count_l - count_r;
+            
+            if(current_overlap > max_overlap){
+                max_overlap = current_overlap;
+                s_b = s;
+            }
+            if(current_overlap < min_overlap){
+                min_overlap = current_overlap;
+                s_m = s;
+            }
+        }
+        cout << s_b << " " << s_m << "\n";
+    }
 }
